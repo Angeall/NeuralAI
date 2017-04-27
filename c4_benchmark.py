@@ -47,7 +47,7 @@ if __name__ == "__main__":
     benchmark = Benchmark(starting_api, controllers)
     name = ""
     if len(sys.argv) > 3:
-        number = sys.argv[3]
+        number = int(sys.argv[3])
     else:
         number = 100
     df = pd.DataFrame()
