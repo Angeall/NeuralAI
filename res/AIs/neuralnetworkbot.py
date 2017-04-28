@@ -23,6 +23,8 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
     def _selectNewMove(self, game_state: API) -> MoveDescriptor:
         actions = np.array(game_state.getAllActionsHistories()).tolist()
         actions = ActionSequenceDecoder.getPlayersActionsSequence(actions)
+        if len(actions) == 0:
+            return random.choice(self.possibleMoves)
         actions_sequence = self._predict(actions, len(game_state.getPlayerNumbers()))
         selected_action = None
         for i, action in enumerate(actions_sequence):
