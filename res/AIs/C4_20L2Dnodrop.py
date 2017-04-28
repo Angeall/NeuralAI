@@ -4,7 +4,7 @@ except ModuleNotFoundError:
     from .neuralconnect4 import NeuralConnect4
 
 
-class _3L2DNoDrop(NeuralConnect4):
+class _20L2DNoDrop(NeuralConnect4):
     @property
     def _modelName(self) -> str:
         return "C4_20L2Dnodrop.h5"
