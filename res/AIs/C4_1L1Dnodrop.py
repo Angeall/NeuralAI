@@ -1,5 +1,5 @@
 try:
-    from res.AIs.neuralconnect4 import NeuralConnect4
+    from neuralconnect4 import NeuralConnect4
 except ModuleNotFoundError:
     from .neuralconnect4 import NeuralConnect4
 

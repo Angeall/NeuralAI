@@ -7,7 +7,7 @@ from pytgf.examples.connect4.controllers.player import Connect4BotPlayer
 from pytgf.examples.connect4.rules import Connect4API
 
 try:
-    from res.AIs.neuralnetworkbot import NeuralNetworkBot
+    from neuralnetworkbot import NeuralNetworkBot
 except ModuleNotFoundError:
     from .neuralnetworkbot import NeuralNetworkBot
 
