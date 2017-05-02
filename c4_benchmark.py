@@ -14,7 +14,8 @@ def perform_benchmark(nb_games):
     res = benchmark.benchmark(nb_games)
     df = pd.concat((df, pd.DataFrame([res[1], res[2]])), axis=1)  # type: pd.DataFrame
     df.to_csv(controllers_classes[1].__name__ + " VS " + controllers_classes[2].__name__ + ".csv")
-    
+
+
 def get_class(path, file_name):
     print(path)
     sys.path.insert(0, path)
@@ -26,6 +27,17 @@ def get_class(path, file_name):
                 if issubclass(cls, Connect4BotPlayer):
                     print("ok with", cls)
                     return cls
+
+
+def count_in_file(path_to_file):
+    results = [[0, 0, 0], [0, 0 ,0]]
+    df = pd.read_csv(path_to_file)
+    for i in range(2):
+        for res in df.loc[i][1:]:
+            res *= -1
+            res += 1
+            results[i][res] += 1
+    return results
 
 
 if __name__ == "__main__":
