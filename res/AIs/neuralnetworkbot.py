@@ -50,7 +50,7 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
             lst.append([-1 for _ in range(nb_player)])
         ar = np.array(lst)
         ar = self._encodeToFloat(ar)
-        return ar.reshape(1, self._maxSequenceLength, nb_player)
+        return ar.reshape(1, self._maxSequenceLength, -1)
 
     def _predict(self, lst: List[List[int]], nb_player: int):
         return self._decode(self._model.predict(self._encode(lst, nb_player), batch_size=self._batchSize))\
