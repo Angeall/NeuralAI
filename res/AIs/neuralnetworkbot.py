@@ -26,6 +26,7 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
         if len(actions) == 0:
             return random.choice(self.possibleMoves)
         actions_sequence = self._predict(actions, len(game_state.getPlayerNumbers()))
+        print(actions_sequence)
         selected_action = None
         for i, action in enumerate(actions_sequence):
             if action >= 0:
