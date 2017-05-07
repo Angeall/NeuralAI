@@ -3,8 +3,8 @@ from abc import ABCMeta
 from os.path import join
 
 import numpy as np
-from pytgf.examples.connect4.controllers.player import Connect4BotPlayer
-from pytgf.examples.connect4.rules import Connect4API
+from pytgf.examples.lazerbike.control import LazerBikeBotPlayer
+from pytgf.examples.lazerbike.rules import LazerBikeAPI
 
 try:
     from neuralnetworkbot import NeuralNetworkBot
@@ -12,14 +12,14 @@ except ModuleNotFoundError:
     from .neuralnetworkbot import NeuralNetworkBot
 
 
-class NeuralConnect4(Connect4BotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
+class NeuralLazerbike(LazerBikeBotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
     def _encodeToFloat(self, sequence: np.ndarray) -> np.ndarray:
-        return (sequence + 1) / 7
+        return (sequence + 2) * 3
 
     def _decodeFromFloat(self, sequence: np.ndarray) -> np.ndarray:
-        return np.round((sequence * 7) - 1).astype(int)
+        return np.round((sequence / 7) - 1).astype(int)
 
-    def _selectNewMove(self, game_state: Connect4API):
+    def _selectNewMove(self, game_state: LazerBikeAPI):
         winning_move = game_state.getDirectWinningMove(self.playerNumber)
         if winning_move is not None:
             return winning_move
