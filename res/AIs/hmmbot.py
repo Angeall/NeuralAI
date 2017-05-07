@@ -26,7 +26,12 @@ class HMMBot(Bot, metaclass=ABCMeta):
         if len(actions) == 0:
             return random.choice(self.possibleMoves)
         actions_sequence = self._predict(actions, len(game_state.getPlayerNumbers()))
-        return game_state.decodeMove(self.playerNumber, actions_sequence[-1])
+        action = actions_sequence[-1]
+        succeeded, _ = self.gameState.simulateMove(self.playerNumber, action)
+        while not succeeded:
+            action = random.choice(self.possibleMoves)
+            succeeded, _ = self.gameState.simulateMove(self.playerNumber, action)
+        return game_state.decodeMove(self.playerNumber, action)
 
     def _loadModel(self):
         path = os.path.join(self._modelPath, self._modelName)
