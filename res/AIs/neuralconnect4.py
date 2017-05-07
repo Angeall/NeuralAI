@@ -14,10 +14,10 @@ except ModuleNotFoundError:
 
 class NeuralConnect4(Connect4BotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
     def _encodeToFloat(self, sequence: np.ndarray) -> np.ndarray:
-        return (sequence + 1) * 7
+        return (sequence + 1) / 7
 
     def _decodeFromFloat(self, sequence: np.ndarray) -> np.ndarray:
-        return np.round((sequence / 7) - 1).astype(int)
+        return np.round((sequence * 7) - 1).astype(int)
 
     def _selectNewMove(self, game_state: Connect4API):
         winning_move = game_state.getDirectWinningMove(self.playerNumber)
@@ -27,6 +27,7 @@ class NeuralConnect4(Connect4BotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
         if losing_move is not None:
             return losing_move  # Block the opponent
         move = super()._selectNewMove(game_state)
+        print(move)
         succeeded, _ = self.gameState.simulateMove(self.playerNumber, move)
         while not succeeded:
             move = random.choice(self.possibleMoves)

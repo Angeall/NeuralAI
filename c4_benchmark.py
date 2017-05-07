@@ -41,6 +41,7 @@ def count_in_file(path_to_file):
 
 
 if __name__ == "__main__":
+    sys.path.append(os.path.join("res", "AIs"))
     assert(len(sys.argv) > 2)
     
     file_name_1 = sys.argv[1].split(os.path.sep)[-1]
