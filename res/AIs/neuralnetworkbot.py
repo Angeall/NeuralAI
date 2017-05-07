@@ -26,13 +26,13 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
         if len(actions) == 0:
             return random.choice(self.possibleMoves)
         actions_sequence = self._predict(actions, len(game_state.getPlayerNumbers()))
-        print(actions_sequence)
         selected_action = None
         for i, action in enumerate(actions_sequence):
             if action >= 0:
                 selected_action = action
                 if i >= len(actions):
                     break
+        print("action", selected_action)
         if selected_action is None:
             return random.choice(self.possibleMoves)  # No actions selected by network
         return game_state.decodeMove(self.playerNumber, selected_action)
