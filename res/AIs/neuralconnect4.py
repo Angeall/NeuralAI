@@ -26,7 +26,7 @@ class NeuralConnect4(Connect4BotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
         losing_move = game_state.getDirectLosingMove(self.playerNumber)
         if losing_move is not None:
             return losing_move  # Block the opponent
-        move = super()._selectNewMove(game_state)
+        move = min(super()._selectNewMove(game_state), 6)
         succeeded, _ = self.gameState.simulateMove(self.playerNumber, move)
         while not succeeded:
             move = random.choice(self.possibleMoves)
