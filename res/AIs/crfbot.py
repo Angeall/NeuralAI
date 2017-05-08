@@ -27,10 +27,10 @@ class CRFBot(Bot, metaclass=ABCMeta):
             return random.choice(self.possibleMoves)
         actions_sequence = self._predict(actions, len(game_state.getPlayerNumbers()))
         action = actions_sequence[-1]
-        succeeded, _ = self.gameState.simulateMove(self.playerNumber, action)
+        succeeded, _ = game_state.simulateMove(self.playerNumber, action)
         while not succeeded:
             action = random.choice(self.possibleMoves)
-            succeeded, _ = self.gameState.simulateMove(self.playerNumber, action)
+            succeeded, _ = game_state.simulateMove(self.playerNumber, action)
         return game_state.decodeMove(self.playerNumber, action)
 
     def _loadModel(self):

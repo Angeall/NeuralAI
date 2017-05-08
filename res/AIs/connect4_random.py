@@ -16,5 +16,5 @@ class Connect4Random(Connect4BotPlayer):
         move = random.choice(self.possibleMoves)
         while not succeeded:
             move = random.choice(self.possibleMoves)
-            succeeded, _ = self.gameState.simulateMove(self.playerNumber, move)
+            succeeded, _ = game_state.simulateMove(self.playerNumber, move)
         return move

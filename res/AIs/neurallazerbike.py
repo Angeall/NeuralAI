@@ -27,10 +27,10 @@ class NeuralLazerbike(LazerBikeBotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
         if losing_move is not None:
             return losing_move  # Block the opponent
         move = super()._selectNewMove(game_state)
-        succeeded, _ = self.gameState.simulateMove(self.playerNumber, move)
+        succeeded, _ = game_state.simulateMove(self.playerNumber, move)
         while not succeeded:
             move = random.choice(self.possibleMoves)
-            succeeded, _ = self.gameState.simulateMove(self.playerNumber, move)
+            succeeded, _ = game_state.simulateMove(self.playerNumber, move)
         return move
 
     @property
