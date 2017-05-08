@@ -36,3 +36,7 @@ class NeuralConnect4(Connect4BotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
     @property
     def _maxSequenceLength(self) -> int:
         return 20  # 21 actions maximum - 1 because of prediction
+
+    @property
+    def _neutralValue(self):
+        return -1

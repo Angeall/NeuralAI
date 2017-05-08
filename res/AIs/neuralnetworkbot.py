@@ -32,7 +32,6 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
                 selected_action = action
                 if i >= len(actions):
                     break
-        print("action", selected_action)
         if selected_action is None:
             return random.choice(self.possibleMoves)  # No actions selected by network
         return game_state.decodeMove(self.playerNumber, selected_action)
@@ -48,7 +47,7 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
 
     def _encode(self, lst, nb_player: int):
         while len(lst) != self._maxSequenceLength:
-            lst.append([-1 for _ in range(nb_player)])
+            lst.append([self._neutralValue for _ in range(nb_player)])
         ar = np.array(lst)
         ar = self._encodeToFloat(ar)
         return ar.reshape(1, self._maxSequenceLength, -1)
@@ -74,6 +73,11 @@ class NeuralNetworkBot(Bot, metaclass=ABCMeta):
     @property
     @abstractmethod
     def _batchSize(self) -> int:
+        pass
+
+    @property
+    @abstractmethod
+    def _neutralValue(self) -> int:
         pass
 
     @abstractmethod
