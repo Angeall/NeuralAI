@@ -18,7 +18,7 @@ from res.AIs.neuralnetworkbot import NeuralNetworkBot
 
 
 MAX_LEN = 21
-NB_VICTORIES = 2
+NB_VICTORIES = 100
 
 
 def create_dataset(dataset: list, player_number: int, nb_players: int=2, default_value: int=-1000):
