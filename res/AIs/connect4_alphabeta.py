@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from typing import Dict
+import random
 
 from pytgf.board.simulation import SimultaneousAlphaBeta
 from pytgf.characters.moves import MoveDescriptor
@@ -15,6 +16,7 @@ def eval_fct(game_state: Connect4API) -> Dict[int, float]:
             score = 1000
         elif not game_state.isPlayerAlive(player_number):
             score = -1000
+        score += random.randint(0, 100) / 100
         scores[player_number] = score
     return scores
 
