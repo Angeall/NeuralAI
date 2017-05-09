@@ -12,7 +12,10 @@ class _6L2Dcat200drop20GenB1(NeuralConnect4):
         actions = []
         sequence = sequence[0]
         for lst in sequence:
-            actions.append(np.argmax(lst) - 1)
+            print("lst:", lst)
+            maxi = np.argmax(lst) - 1
+            print(maxi)
+            actions.append(maxi)
         return np.array([actions])
 
     @property
