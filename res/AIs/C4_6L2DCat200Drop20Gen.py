@@ -10,9 +10,14 @@ class _6L2DCat200Drop20Gen(NeuralConnect4):
 
     def _decodeFromFloat(self, sequence: np.ndarray) -> np.ndarray:
         actions = []
+        print("seq_before", sequence)
         sequence = sequence[0]
+        print("seq_after", sequence)
         for lst in sequence:
-            actions.append(np.argmax(lst) - 1)
+            print("lst:", lst)
+            maxi = np.argmax(lst) - 1
+            print(maxi)
+            actions.append(maxi)
         return np.array([actions])
 
     @property
