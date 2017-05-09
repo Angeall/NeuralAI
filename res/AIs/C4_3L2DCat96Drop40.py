@@ -21,4 +21,4 @@ class _3L2DCat96Drop40(NeuralConnect4):
 
     @property
     def _batchSize(self) -> int:
-        return 20
+        return 1
