@@ -10,7 +10,9 @@ class _6L2Dcat200drop20GenB1(NeuralConnect4):
 
     def _decodeFromFloat(self, sequence: np.ndarray) -> np.ndarray:
         actions = []
+        print("seq_before", sequence)
         sequence = sequence[0]
+        print("seq_after", sequence)
         for lst in sequence:
             print("lst:", lst)
             maxi = np.argmax(lst) - 1
