@@ -17,25 +17,19 @@ class NeuralLazerbike(LazerBikeBotPlayer, NeuralNetworkBot, metaclass=ABCMeta):
         return (sequence + 2) * 3
 
     def _decodeFromFloat(self, sequence: np.ndarray) -> np.ndarray:
-        return np.round((sequence / 7) - 1).astype(int)
+        return np.round((sequence / 3) - 2).astype(int)
 
     def _selectNewMove(self, game_state: LazerBikeAPI):
-        winning_move = game_state.getDirectWinningMove(self.playerNumber)
-        if winning_move is not None:
-            return winning_move
-        losing_move = game_state.getDirectLosingMove(self.playerNumber)
-        if losing_move is not None:
-            return losing_move  # Block the opponent
         move = super()._selectNewMove(game_state)
         succeeded, _ = game_state.simulateMove(self.playerNumber, move)
-        while not succeeded:
+        while not succeeded or game_state.isMoveSuicidal(self.playerNumber, move):
             move = random.choice(self.possibleMoves)
             succeeded, _ = game_state.simulateMove(self.playerNumber, move)
         return move
 
     @property
     def _maxSequenceLength(self) -> int:
-        return 20  # 21 actions maximum - 1 because of prediction
+        return 112  # 113 actions maximum - 1 because of prediction
 
     @property
     def _neutralValue(self):
