@@ -5,7 +5,6 @@ import pandas as pd
 import numpy as np
 from keras.preprocessing.sequence import pad_sequences
 from keras.models import Model
-from pytgf.data.component import Component
 
 from pytgf.data.decode.action_sequence_decoder import ActionSequenceDecoder
 from pytgf.data.gatherer import Gatherer
@@ -49,8 +48,6 @@ def learn(decoder: ActionSequenceDecoder, own_controller: NeuralNetworkBot, sequ
     model.save(own_controller.__class__.__name__ + str(nb_victories) + ".h5")
 
 
-
-
 if __name__ == "__main__":
     assert (len(sys.argv) > 2)
 
@@ -73,18 +70,7 @@ if __name__ == "__main__":
     own_controller.gameState = core
     opponent_controllers = [cls2(2)]
     opponent_controllers[0].gameState = core
-    a_priori_methods = [lambda api: api.getLastMove(1), lambda api: api.getLastMove(2)]
-    a_priori_title = ["p1_last_move", "p2_last_move"]
-    a_posteriori_methods = [lambda api: 1000 if api.hasWon(1) else 0, lambda api: 1000 if api.hasWon(2) else 0]
-    a_posteriori_titles = ["p1_final_points", "p2_final_points"]
-    a_priori_components = []
-    a_posteriori_components = []
-    for i in range(len(a_priori_methods)):
-        a_priori_components.append(Component(a_priori_methods[i], a_priori_title[i]))
-    for i in range(len(a_posteriori_methods)):
-        a_posteriori_components.append(Component(a_posteriori_methods[i], a_posteriori_titles[i]))
-    gatherer = Gatherer(a_priori_components, a_posteriori_components)
-    battle = ReinforcementRoutine(own_controller, opponent_controllers, gatherer, tuple(range(7)),
+    battle = ReinforcementRoutine(own_controller, opponent_controllers, Gatherer([]), tuple(range(7)),
                                   lambda api: {player: 100 * api.hasWon(player) for player in (1, 2)},
                                   must_write_files=False, must_keep_temp_files=False, min_end_states=NB_VICTORIES,
                                   min_victories=NB_VICTORIES)
