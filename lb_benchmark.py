@@ -13,7 +13,7 @@ def perform_benchmark(nb_games):
     global df
     res = benchmark.benchmark(nb_games)
     df = pd.concat((df, pd.DataFrame([res[1], res[2]])), axis=1)  # type: pd.DataFrame
-    df.to_csv(controllers_classes[1].__name__ + " VS " + controllers_classes[2].__name__ + ".csv")
+    df.to_csv(controllers_classes[0][1].__name__ + " VS " + controllers_classes[0][2].__name__ + ".csv")
 
 
 def get_class(path, file_name):
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     
     controllers_classes = ({1: cls1, 2: cls2}, {1: 1, 2: 2})
     print(cls1, cls2)
-    loop = create_game(controllers_classes, 10, 10, False)
+    loop = create_game(controllers_classes, 10, 10, graphics=False)
     starting_api = loop.api
     controllers = [loop.getWrapperFromPlayerNumber(1).controller, loop.getWrapperFromPlayerNumber(2).controller]
     benchmark = Benchmark(starting_api, controllers)
