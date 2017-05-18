@@ -1,6 +1,8 @@
 import random
 
 import numpy as np
+from pytgf.characters.moves import MoveDescriptor
+from pytgf.controls.controllers import TeammateMessage
 from pytgf.examples.lazerbike.control import LazerBikeBotPlayer
 from pytgf.examples.lazerbike.rules import LazerBikeAPI
 
@@ -36,3 +38,9 @@ class LazerBikeHMM(LazerBikeBotPlayer, HMMBot):
             if succeeded and suicidal and move not in suicidal_moves:
                 suicidal_moves.append(move)
         return move
+
+    def _isMoveInteresting(self, player_number: int, new_move_event: MoveDescriptor):
+        return True
+
+    def selectMoveFollowingTeammateMessage(self, teammate_number: int, message: TeammateMessage) -> None:
+        pass
