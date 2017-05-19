@@ -13,7 +13,7 @@ except ModuleNotFoundError:
     from .crfbot import CRFBot
 
 
-class LazerBikeCRF(LazerBikeBotPlayer, CRFBot):
+class LazerBikeCRFVect(LazerBikeBotPlayer, CRFBot):
     def _encode(self, lst, nb_player: int):
         encoded_seqs = []
         for features in lst:
