@@ -5,7 +5,7 @@ from os.path import join
 import numpy as np
 from pytgf.characters.moves import MoveDescriptor
 from pytgf.controls.controllers import TeammateMessage
-from pytgf.examples.lazerbike.control import LazerBikeBotPlayer
+from pytgf.examples.lazerbike.controllers import LazerBikeBotPlayer
 from pytgf.examples.lazerbike.rules import LazerBikeAPI
 
 try:
