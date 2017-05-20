@@ -35,6 +35,9 @@ class LazerBikeAlphaBeta(LazerBikeBotPlayer):
             message: The message sent by the teammate
         """
         pass
+        
+    def _isMoveInteresting(self, player_number: int, new_move_event: MoveDescriptor):
+        return True
 
     @staticmethod
     def eval_fct(state: API) -> Dict[int, float]:
