@@ -35,9 +35,6 @@ class LazerBikeAlphaBeta(LazerBikeBotPlayer):
             message: The message sent by the teammate
         """
         pass
-        
-    def _isMoveInteresting(self, player_number: int, new_move_event: MoveDescriptor):
-        return True
 
     @staticmethod
     def eval_fct(state: API) -> Dict[int, float]:
@@ -53,12 +50,12 @@ class LazerBikeAlphaBeta(LazerBikeBotPlayer):
         scores = {}
         for player_number in state.getPlayerNumbers():
             score = 1
-            if not state.game.players[player_number].isAlive():
+            if not state.game.units[player_number].isAlive():
                 score = -1000
             for other_player_number in state.getPlayerNumbers():
                 if other_player_number != player_number:
                     if not state.belongsToSameTeam(player_number, other_player_number):
-                        if not state.game.players[other_player_number].isAlive():
+                        if not state.game.units[other_player_number].isAlive():
                             score += 1
             score += random.random()
             scores[player_number] = score
