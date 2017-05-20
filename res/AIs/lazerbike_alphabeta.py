@@ -24,7 +24,7 @@ class LazerBikeAlphaBeta(LazerBikeBotPlayer):
         """
         super().__init__(player_number)
         self._playersMove = []
-        self.alphabeta = SimultaneousAlphaBeta(self.eval_fct, self.possibleMoves, max_depth=2)
+        self.alphabeta = SimultaneousAlphaBeta(self.eval_fct, self.possibleMoves, max_depth=1)
 
     def selectMoveFollowingTeammateMessage(self, teammate_number: int, message) -> None:
         """
