@@ -1,9 +1,8 @@
-import sys
-import os
 import inspect
+import os
+import sys
 
 import pandas as pd
-
 from pytgf.data.benchmarking.benchmark import Benchmark
 from pytgf.examples.lazerbike.builder import create_game
 from pytgf.examples.lazerbike.controllers import LazerBikeBotPlayer
@@ -24,7 +23,6 @@ def get_class(path, file_name):
     for name, cls in inspect.getmembers(_module):  # Explore the classes inside the file
         if inspect.isclass(cls):
             if not inspect.isabstract(cls):  # The abstract type cannot be instantiated as it is
-                print('find non-abstract class', cls, 'in file', file_name)
                 if issubclass(cls, LazerBikeBotPlayer):
                     print("ok with", cls)
                     return cls
@@ -59,6 +57,7 @@ if __name__ == "__main__":
     loop = create_game(controllers_classes, 10, 10, graphics=False)
     starting_api = loop.api
     controllers = [loop.getWrapperFromPlayerNumber(1).controller, loop.getWrapperFromPlayerNumber(2).controller]
+
     benchmark = Benchmark(starting_api, controllers)
     name = ""
     if len(sys.argv) > 3:

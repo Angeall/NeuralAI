@@ -1,9 +1,8 @@
 """
 File containing the definition of an undying AI, its goal is not to die.
 """
-import time
-from typing import Dict
 import random
+from typing import Dict
 
 from pytgf.board.simulation import SimultaneousAlphaBeta
 from pytgf.characters.moves import MoveDescriptor
@@ -70,8 +69,6 @@ class LazerBikeAlphaBeta(LazerBikeBotPlayer):
 
         Returns: a new MoveDescriptor to send to the game
         """
-        start = time.time()
         game_state.game.copy()
-        print("ONE COPY:", time.time() - start)
         action = self.alphabeta.alphaBetaSearching(self.playerNumber, game_state)
         return action
