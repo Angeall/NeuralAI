@@ -1,3 +1,4 @@
+import numpy as np
 try:
     from neurallazerbike import NeuralLazerbike
 except ModuleNotFoundError:
